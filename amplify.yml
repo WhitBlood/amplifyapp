@@ -1,0 +1,24 @@
+# ============================================================================
+# AWS Amplify Build Configuration for HR Management Frontend
+# ============================================================================
+
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Installing dependencies..."
+        - cd frontend
+        - npm ci --legacy-peer-deps
+    build:
+      commands:
+        - echo "Building React application..."
+        - echo "API URL: $REACT_APP_API_URL"
+        - npm run build
+  artifacts:
+    baseDirectory: frontend/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - frontend/node_modules/**/*
