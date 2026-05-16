@@ -4,7 +4,6 @@ frontend:
     preBuild:
       commands:
         - echo "Installing dependencies..."
-        - cd frontend
         - npm ci --legacy-peer-deps
     build:
       commands:
@@ -12,9 +11,9 @@ frontend:
         - echo "API URL - $REACT_APP_API_URL"
         - npm run build
   artifacts:
-    baseDirectory: frontend/build
+    baseDirectory: build
     files:
       - '**/*'
   cache:
     paths:
-      - frontend/node_modules/**/*
+      - node_modules/**/*
